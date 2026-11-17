@@ -1,6 +1,8 @@
-# ASU Internship Hub
+# ASU Internship Hub — Version 2
 
 A local WebGIS app for jobs and internships near ASU Tempe, with career filters, an interactive map, and automatic collection from public career sites.
+
+Version 2 runs from the repository root. The original static prototype is preserved in [version-1/](version-1/). See [Changelog](CHANGELOG.md) for the summarized changes.
 
 ## Run with Docker
 
@@ -28,6 +30,7 @@ See [Windows quick start](docs/WINDOWS.md) or [Setup](docs/SETUP.md) for install
 | `data/`, `reports/` | Local inputs, exports, and generated reports; ignored by Git |
 | `manage.py`, `scan_pages.py` | Database and collection commands |
 | `tests/` | Backend and offline interface checks |
+| `version-1/` | Original GitHub files, preserved unchanged |
 
 ## Data
 

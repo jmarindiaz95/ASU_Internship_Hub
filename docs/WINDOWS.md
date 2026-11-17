@@ -23,11 +23,11 @@ The last command should print `linux`.
 With Git installed:
 
 ```powershell
-git clone --branch codex/finance-postgis-hub https://github.com/jmarindiaz95/ASU_Internship_Hub.git
+git clone https://github.com/jmarindiaz95/ASU_Internship_Hub.git
 cd ASU_Internship_Hub
 ```
 
-Alternatively, select the `codex/finance-postgis-hub` branch on GitHub, choose **Code → Download ZIP**, extract it, and open PowerShell in the extracted folder containing `compose.yaml`.
+Alternatively, on the repository’s `main` branch, choose **Code → Download ZIP**, extract it, and open PowerShell in the extracted folder containing `compose.yaml`.
 
 ## 3. Start and verify
 

@@ -7,12 +7,12 @@ On Windows, follow the [Windows quick start](WINDOWS.md) for Docker installation
 Install [Docker Desktop](https://docs.docker.com/get-started/get-docker/) or Docker Engine with Compose. Start Docker, then run:
 
 ```sh
-git clone --branch codex/finance-postgis-hub https://github.com/jmarindiaz95/ASU_Internship_Hub.git
+git clone https://github.com/jmarindiaz95/ASU_Internship_Hub.git
 cd ASU_Internship_Hub
 docker compose up --build -d
 ```
 
-Use the branch containing the application changes. Open [127.0.0.1:8080](http://127.0.0.1:8080/).
+Open [127.0.0.1:8080](http://127.0.0.1:8080/).
 
 This builds the app and a separate PostgreSQL/PostGIS database. It does not connect to Jesus's local `webgis` database. Tables and employer identities are initialized automatically; public job collection starts in the background. The first listings can take a few minutes to appear. No workbook is required.
 
