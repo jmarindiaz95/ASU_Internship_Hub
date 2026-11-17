@@ -1,0 +1,45 @@
+{
+  "Carvana": {
+    "aliases": ["Carvana LLC", "Carvana, LLC", "Carvana Co."],
+    "locations": [
+      {
+        "address": "300 E Rio Salado Pkwy", "city": "Tempe", "state": "AZ", "zip": "85281",
+        "basis": "company_office", "evidence_url": "https://investors.carvana.com/contact-us/contact-us",
+        "note": "Corporate investor-relations address. Company reference only; the job's exact worksite may differ.",
+        "observed_on": "2026-11-16"
+      }
+    ]
+  },
+  "Axon": {
+    "aliases": ["Axon Enterprise", "Axon Enterprise Inc."],
+    "locations": [
+      {
+        "address": "17800 N 85th St", "city": "Scottsdale", "state": "AZ", "zip": "85255", "basis": "company_hq",
+        "evidence_url": "https://www.axon.com/careers/all",
+        "note": "Company headquarters stated on Axon's office page. Job worksite is not specified at street level.",
+        "observed_on": "2026-11-16"
+      }
+    ]
+  },
+  "Wallace Plese + Dreher (WP+D)": {
+    "aliases": ["Wallace Plese + Dreher"],
+    "locations": [
+      {
+        "address": "500 N Juniper Dr", "city": "Chandler", "state": "AZ", "zip": "85226",
+        "basis": "company_office", "evidence_url": "https://www.wpdcpa.com/careers/job-openings/",
+        "note": "One of two published company offices; assignment to this office is not confirmed.",
+        "observed_on": "2026-11-16"
+      },
+      {
+        "address": "8665 E Hartford Dr", "city": "Scottsdale", "state": "AZ", "zip": "85255",
+        "basis": "company_office", "evidence_url": "https://www.wpdcpa.com/careers/job-openings/",
+        "note": "One of two published company offices; assignment to this office is not confirmed.",
+        "observed_on": "2026-11-16"
+      }
+    ]
+  },
+  "AccuPro Advisors": {
+    "aliases": [],
+    "contact_urls": ["https://www.accuproadvisors.com/resources/careers", "https://www.accuproadvisors.com/contact"]
+  }
+}
