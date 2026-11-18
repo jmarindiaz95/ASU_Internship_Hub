@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.0.1 — 2026-11-18
+
+- Added optional Valley Metro bus and light-rail overlays with independent map controls and distinct legend colors ([PR #2](https://github.com/jmarindiaz95/ASU_Internship_Hub/pull/2)).
+- Added route popups with names, directions where available, and official schedule links.
+- Included static GeoJSON datasets with 205 bus-route features and 4 light-rail features, source notes, and a download/validation script.
+- Clarified that overlays show route alignments; stops, stations, live arrivals, and trip planning are not included.
+
 ## Version 2.0.0 — 2026-11-16
 
 - Made the working application the repository's main version; preserved the original GitHub files in `version-1/`.

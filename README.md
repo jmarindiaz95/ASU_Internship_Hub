@@ -38,7 +38,7 @@ Eight sources cover ASU Career Services, Arizona state jobs, Carvana, Axon, One 
 
 Available results require a successful source check within 7 days and no known closure, missing page, or passed deadline. Spreadsheet-only examples stay hidden.
 
-Job addresses take priority. Company headquarters or offices are labeled as references when the worksite is unknown. Unresolved locations remain listed. Coordinates and straight-line distances are approximate; transit routing is pending.
+Job addresses take priority. Company headquarters or offices are labeled as references when the worksite is unknown. Unresolved locations remain listed. Coordinates and straight-line distances are approximate. Optional Valley Metro bus and light-rail overlays show route alignments; stops, live arrivals, and trip planning remain pending.
 
 ## Commands
 
