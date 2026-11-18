@@ -5,6 +5,104 @@ const state = { view: 'all', items: [], features: [], total: 0, selected: null, 
 const labels = { internship: 'Internship', job: 'Other employment', program: 'Career program', unknown: 'Not stated', full_time: 'Full-time', part_time: 'Part-time', on_site: 'On-site', hybrid: 'Hybrid', remote: 'Remote', early: 'Early career', mid: 'Mid career', senior: 'Senior', paid: 'Paid', unpaid: 'Unpaid' };
 const campus = [33.4177504, -111.9343818];
 let map, radiusCircle, markerLayer;
+const transitState = {
+  bus: { url: '/static/data/bus_routes.geojson', layer: null, loading: false, promise: null, visible: false, group: null },
+  rail: { url: '/static/data/light_rail.geojson', layer: null, loading: false, promise: null, visible: false, group: null }
+};
+
+function createBusPopup(props) {
+  const container = element('div', 'transit-popup');
+  const typeBadge = element('span', 'type-badge', props.SERVICE || 'Valley Metro Bus');
+  const title = element('h3', 'popup-title');
+  const routeNum = props.route_id ? `Route ${props.route_id}` : (props.ROUTE || 'Bus Route');
+  const longName = props.route_long_name ? ` · ${props.route_long_name}` : '';
+  title.textContent = `${routeNum}${longName}`;
+  container.append(typeBadge, title);
+  if (props.Direction) {
+    container.append(element('p', 'transit-detail', `Direction: ${props.Direction}`));
+  }
+  container.append(element('p', 'filter-help', 'Transit route alignment; stops and live arrivals are not included.'));
+  if (props.WEBSITE) {
+    const link = externalLink('Official schedule & stops ↗', props.WEBSITE, 'primary-button-small');
+    if (link) container.append(link);
+  }
+  return container;
+}
+
+function createRailPopup(props) {
+  const container = element('div', 'transit-popup');
+  const typeBadge = element('span', 'type-badge', 'Light Rail');
+  const title = element('h3', 'popup-title', props.ROUTE_NUMBER || props.ROUTE || 'Valley Metro Light Rail');
+  container.append(typeBadge, title);
+  if (props.SYMBOLOGY) {
+    container.append(element('p', 'transit-detail', `Line: ${props.SYMBOLOGY}`));
+  }
+  container.append(element('p', 'filter-help', 'Transit route alignment; stations and live arrivals are not included.'));
+  if (props.WEBSITE) {
+    const link = externalLink('Official schedule & stations ↗', props.WEBSITE, 'primary-button-small');
+    if (link) container.append(link);
+  }
+  return container;
+}
+
+async function toggleTransit(key, show) {
+  const item = transitState[key];
+  if (!item || !map) return;
+  item.visible = Boolean(show);
+
+  if (!show) {
+    if (item.layer && item.group && typeof item.group.hasLayer === 'function' && item.group.hasLayer(item.layer)) {
+      item.group.removeLayer(item.layer);
+    }
+    return;
+  }
+
+  if (item.layer) {
+    if (item.group && typeof item.group.hasLayer === 'function' && !item.group.hasLayer(item.layer)) {
+      item.group.addLayer(item.layer);
+    }
+    return;
+  }
+
+  if (item.loading) {
+    return;
+  }
+
+  item.loading = true;
+  mapMessage(`Loading ${key === 'bus' ? 'bus routes' : 'light rail'}…`);
+
+  try {
+    item.promise = fetchJSON(item.url);
+    const geojsonData = await item.promise;
+
+    const paneName = (typeof map.getPane === 'function' && map.getPane('transitPane')) ? 'transitPane' : 'overlayPane';
+    const geojsonLayer = L.geoJSON(geojsonData, {
+      pane: paneName,
+      style: () => (key === 'bus' ? { color: '#1976d2', weight: 2, opacity: 0.75 } : { color: '#e65100', weight: 4.5, opacity: 0.85 }),
+      onEachFeature: (feature, layer) => {
+        const props = feature.properties || {};
+        layer.bindPopup(() => (key === 'bus' ? createBusPopup(props) : createRailPopup(props)));
+      }
+    });
+
+    item.layer = geojsonLayer;
+
+    if (item.visible && item.group && typeof map.hasLayer === 'function' && map.hasLayer(item.group)) {
+      item.group.addLayer(item.layer);
+    }
+    mapMessage('');
+  } catch (error) {
+    console.error(`Failed to load ${key} transit layer:`, error);
+    mapMessage(`Unable to load ${key === 'bus' ? 'bus routes' : 'light rail'}. You can still explore jobs.`);
+    item.visible = false;
+    if (item.group && typeof map.hasLayer === 'function' && map.hasLayer(item.group)) {
+      map.removeLayer(item.group);
+    }
+  } finally {
+    item.loading = false;
+    item.promise = null;
+  }
+}
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -66,6 +164,34 @@ function initializeMap() {
   L.marker(campus, { title: 'ASU Memorial Union', icon: L.divIcon({ className: 'hub-marker', html: '<span class="campus-star">★</span>', iconSize: [35, 35], iconAnchor: [17, 17] }) }).addTo(map).bindPopup('ASU Memorial Union · campus reference point');
   radiusCircle = L.circle(campus, { radius: 30 * 1609.344, color: '#65152a', weight: 1, dashArray: '5 6', fillOpacity: 0.025, interactive: false }).addTo(map);
   markerLayer = L.layerGroup().addTo(map);
+  if (map.attributionControl && typeof map.attributionControl.addAttribution === 'function') {
+    map.attributionControl.addAttribution('Transit routes &copy; <a href="https://www.valleymetro.org" target="_blank" rel="noopener noreferrer">Valley Metro</a> (routes only)');
+  }
+  if (typeof map.createPane === 'function') {
+    const transitPane = map.createPane('transitPane');
+    if (transitPane && transitPane.style) transitPane.style.zIndex = 350;
+  }
+  if (typeof L.layerGroup === 'function') {
+    transitState.bus.group = L.layerGroup();
+    transitState.rail.group = L.layerGroup();
+    if (typeof L.control?.layers === 'function' && typeof map.on === 'function') {
+      const overlays = {
+        '<span class="transit-control-label"><i class="legend-line bus"></i>Bus routes</span>': transitState.bus.group,
+        '<span class="transit-control-label"><i class="legend-line rail"></i>Light rail</span>': transitState.rail.group
+      };
+      const layerControl = L.control.layers(null, overlays, { position: 'topright', collapsed: false });
+      layerControl.addTo(map);
+
+      map.on('overlayadd', (e) => {
+        if (e.layer === transitState.bus.group) toggleTransit('bus', true);
+        else if (e.layer === transitState.rail.group) toggleTransit('rail', true);
+      });
+      map.on('overlayremove', (e) => {
+        if (e.layer === transitState.bus.group) toggleTransit('bus', false);
+        else if (e.layer === transitState.rail.group) toggleTransit('rail', false);
+      });
+    }
+  }
 }
 function drawMap() {
   if (!map || !markerLayer || !radiusCircle) return;
