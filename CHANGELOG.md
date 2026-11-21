@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed Career Disciplines checkbox clipping in the filter sidebar at wider browser sizes while preserving scrolling and the existing layout.
+
 ## Version 2.0.1 — 2026-11-18
 
 - Added optional Valley Metro bus and light-rail overlays with independent map controls and distinct legend colors ([PR #2](https://github.com/jmarindiaz95/ASU_Internship_Hub/pull/2)).
