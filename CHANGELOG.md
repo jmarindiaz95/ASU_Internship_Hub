@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fixed Career Disciplines checkbox clipping in the filter sidebar at wider browser sizes while preserving scrolling and the existing layout.
+- Improved filter sidebar by standardizing headings and refining checkbox spacing.
 
 ## Version 2.0.1 — 2026-11-18
 
