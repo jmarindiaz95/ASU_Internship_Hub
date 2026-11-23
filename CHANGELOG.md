@@ -4,7 +4,7 @@
 
 - Fixed Career Disciplines checkbox clipping in the filter sidebar at wider browser sizes while preserving scrolling and the existing layout.
 - Improved filter sidebar by standardizing headings and refining checkbox spacing.
-- Added automated transit data test verifying that bus and light-rail GeoJSON files exist, contain features, and use valid line geometries. 
+- Added automated transit data tests verifying that bus and light-rail GeoJSON files exist, contain features, and use valid line geometries.
 
 ## Version 2.0.1 — 2026-11-18
 
