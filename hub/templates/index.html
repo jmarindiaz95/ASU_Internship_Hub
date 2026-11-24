@@ -9,8 +9,14 @@
 </head>
 <body>
   <a class="skip-link" href="#results-heading">Skip to opportunities</a>
-  <header class="site-header"><a href="/" class="brand" aria-label="ASU Internship Hub home"><span class="brand-mark" aria-hidden="true">A</span><span>ASU Internship Hub</span></a><nav aria-label="Main"><button id="about-button" class="nav-button">About</button><button id="sources-button" class="source-button"><span class="status-dot" aria-hidden="true"></span>Data sources<span id="source-alert" hidden>!</span></button></nav></header>
+  
+  <header class="site-header">
+    <a href="/" class="brand" aria-label="ASU Internship Hub home"><span class="brand-mark" aria-hidden="true">A</span><span>ASU Internship Hub</span>
+    </a><nav aria-label="Main"><button id="about-button" class="nav-button">About</button><button id="sources-button" class="source-button"><span class="status-dot" aria-hidden="true"></span>Data sources<span id="source-alert" hidden>!</span></button></nav>
+</header>
+
   <p id="startup-status" class="startup-status" role="status">{% if initial_data %}{{ initial_data['total'] }} opportunities loaded. Starting the map…{% else %}Jobs could not load. Please reload.{% endif %}</p>
+ 
   <main class="workspace">
     <aside class="filter-panel" aria-label="Opportunity filters"><div class="panel-heading"><button id="reset-filters" class="text-button">Reset</button></div>
       <form id="filters">
@@ -49,10 +55,16 @@
       </div><button id="load-more" class="secondary-button" hidden>Load more opportunities</button>
     </section>
   </main>
-  <footer class="site-footer"><p>ASU Internship Hub <span>·</span> Careers near ASU Tempe</p><p>Student project · Not an official ASU service</p></footer>
   <dialog id="job-dialog" aria-labelledby="job-dialog-title"><button class="dialog-close" aria-label="Close position details">×</button><div id="job-detail"></div></dialog>
   <dialog id="sources-dialog" class="wide-dialog" aria-labelledby="sources-title"><button class="dialog-close" aria-label="Close data sources">×</button><p class="eyebrow">LISTING FRESHNESS</p><h2 id="sources-title">Data sources</h2><p id="refresh-description" class="muted">Sources update automatically while the app is running.</p><div class="refresh-row"><button id="refresh-button" class="primary-button">Check sources now</button><span id="refresh-status" aria-live="polite"></span></div><div id="source-list"></div></dialog>
-  <dialog id="about-dialog" aria-labelledby="about-title"><button class="dialog-close" aria-label="Close about">×</button><p class="eyebrow">ABOUT THE PROJECT</p><h2 id="about-title">A local view of career opportunities.</h2><p>Jobs and internships near ASU Tempe, collected from public career sites.</p><p>Company address references are labeled; the job worksite may differ. Unclear locations remain listed.</p><p>Distances are approximate straight lines from Memorial Union. Transit overlays show Valley Metro route alignments (not stops or live schedules). Confirm availability and schedules with the employer.</p><p>Team: Jennifer Lavoe Yawa, Yahya Mohamed, Ryan Bishop, Jesus Marin Diaz, and Naji Araiza.</p></dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title"><button class="dialog-close" aria-label="Close about">×</button><p class="eyebrow">ABOUT THE ASU INTERNSHIP Hub</p><h2 id="about-title">
+      ASU Internship Hub is a location-based web application designed to help ASU Tempe students find jobs and internships that fit both their career interests and practical needs. 
+      The platform brings together opportunities from public career sites and allows students to explore them based on factors such as field of study, job type, pay, distance from 
+      campus, and access to Valley Metro transit. By combining internship information with an interactive map, makes job-search process more organized, accessible, and relevant to
+       students navigating opportunities around the ASU Tempe campus.
+ </p></dialog>
   <script id="initial-data" type="application/json">{{ {'data':initial_data,'meta':initial_meta}|tojson }}</script>
   <noscript><p class="noscript">Enable JavaScript for the map and filters.</p></noscript>
+
+   <footer class="site-footer"><p>ASU Internship Hub</p><p>Authors: Jesus, Naji, Jennifer, Yahya and Ryan</p></footer>
 </body></html>
