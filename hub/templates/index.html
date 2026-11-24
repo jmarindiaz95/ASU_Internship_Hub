@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#65152a">
   <meta name="description" content="Explore jobs and internships near ASU Tempe, with automatic updates and clearly labeled location evidence.">
-  <title>ASU Internship Hub · Jobs & internships</title>
+  <title>ASU Internship Hub</title>
   <link rel="icon" href="/static/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v=1.9.4"><link rel="stylesheet" href="/static/css/style.css?v={{ asset_version }}">
   <script src="/vendor/leaflet/leaflet.js?v=1.9.4" defer></script><script src="/static/js/app.js?v={{ asset_version }}" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#results-heading">Skip to opportunities</a>
-  <header class="site-header"><a href="/" class="brand" aria-label="ASU Internship Hub home"><span class="brand-mark" aria-hidden="true">A</span><span>ASU Internship Hub<small>A student WebGIS project</small></span></a><nav aria-label="Main"><button id="about-button" class="nav-button">About the hub</button><button id="sources-button" class="source-button"><span class="status-dot" aria-hidden="true"></span>Data sources <span id="source-alert" hidden>!</span></button></nav></header>
-  <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">ASU TEMPE · ALL CAREER AREAS</p><h1 id="page-title">Jobs & internships near ASU</h1><p>Explore opportunities across career fields.</p></div><div class="campus-note"><span aria-hidden="true">⌖</span><div><strong>Starting at Memorial Union</strong><small>Up to 30 miles · straight-line distance</small></div></div></section>
+  <header class="site-header"><a href="/" class="brand" aria-label="ASU Internship Hub home"><span class="brand-mark" aria-hidden="true">A</span><span>ASU Internship Hub</span></a><nav aria-label="Main"><button id="about-button" class="nav-button">About</button><button id="sources-button" class="source-button"><span class="status-dot" aria-hidden="true"></span>Data sources<span id="source-alert" hidden>!</span></button></nav></header>
   <p id="startup-status" class="startup-status" role="status">{% if initial_data %}{{ initial_data['total'] }} opportunities loaded. Starting the map…{% else %}Jobs could not load. Please reload.{% endif %}</p>
   <main class="workspace">
-    <aside class="filter-panel" aria-label="Opportunity filters"><div class="panel-heading"><h2>Refine your search</h2><button id="reset-filters" class="text-button">Reset</button></div>
+    <aside class="filter-panel" aria-label="Opportunity filters"><div class="panel-heading"><button id="reset-filters" class="text-button">Reset</button></div>
       <form id="filters">
         <label class="stacked" for="region">Location scope<select id="region" name="region"><option value="phoenix">Phoenix area + unclear locations</option><option value="all">All collected locations</option></select></label><fieldset class="compact-filter"><legend>Career disciplines</legend><div id="category-options">{% if initial_meta %}{% for category in initial_meta['categories'] %}<label><input type="checkbox" name="category" value="{{ category['id'] }}"> {{ category['label'] }}</label>{% endfor %}{% else %}<p class="muted">Loading career disciplines…</p>{% endif %}</div></fieldset>
         <fieldset class="compact-filter"><legend>Opportunity</legend><label><input type="checkbox" name="type" value="internship"> Internship</label><label><input type="checkbox" name="type" value="job"> Other employment</label><label><input type="checkbox" name="type" value="program"> Career program</label></fieldset>
