@@ -1,0 +1,76 @@
+{
+  "keywords": [
+    "accounting", "accountant", "accounts", "audit", "auditor", "finance", "financial", "tax",
+    "payroll", "budget", "banking", "insurance", "wealth", "actuarial", "treasury", "credit",
+    "investment", "investments", "underwriting", "bookkeeper", "lending", "compliance",
+    "capital markets", "risk", "analyst", "intern", "internship", "software", "engineering",
+    "healthcare", "operations", "marketing", "education", "customer service"
+  ],
+  "sources": [
+    {
+      "id": "asu", "name": "ASU Career Services · public RSS", "kind": "rss", "enabled": true, "interval_hours": 1,
+      "index_url": "https://career.eoss.asu.edu/jobs/feed/",
+      "config": {
+        "link_path": "/jobs/", "match_scope": "title_url", "max_discovered": 25, "recheck_known": true,
+        "body_selector": ".entry-content", "title_selector": "#job-title", "job_scope": "all"
+      }
+    },
+    {
+      "id": "az_state", "name": "State of Arizona · all careers", "kind": "html", "enabled": true,
+      "interval_hours": 3, "index_url": "https://careers.pageuppeople.com/1045/cw/en-us/listing/",
+      "config": {
+        "link_path": "/1045/cw/en-us/job/", "filter_keywords": false, "max_discovered": 1000,
+        "recheck_known": true, "company_name": "State of Arizona", "title_selector": "#job-content > h2",
+        "body_selector": "#job-details", "location_selector": "#job-content .location", "job_scope": "all",
+        "max_checked": 1000, "max_pages": 35, "metro_only": true, "next_selector": "a.more-link"
+      }
+    },
+    {
+      "id": "khalsa", "name": "Khalsa McBrearty", "kind": "employer", "enabled": true, "interval_hours": 6,
+      "index_url": "https://khalsacpa.com/careers/",
+      "config": {
+        "company_id": "C004", "company_name": "Khalsa McBrearty Accountancy, LLP",
+        "company_website": "https://khalsacpa.com/", "link_path": "/careers/job-", "contact_url": "https://khalsacpa.com/contact/",
+        "max_discovered": 20, "job_scope": "all"
+      }
+    },
+    {
+      "id": "wpd", "name": "Wallace Plese + Dreher", "kind": "employer", "enabled": true, "interval_hours": 6,
+      "index_url": "https://www.wpdcpa.com/careers/job-openings/",
+      "config": {
+        "company_id": "C005", "company_name": "Wallace Plese + Dreher (WP+D)",
+        "company_website": "https://www.wpdcpa.com/", "link_path": "/career/", "max_discovered": 20, "job_scope": "all"
+      }
+    },
+    {
+      "id": "accupro", "name": "AccuPro Advisors · known career page", "kind": "single_page", "enabled": true,
+      "interval_hours": 6, "index_url": "https://www.accuproadvisors.com/resources/careers",
+      "config": {
+        "company_id": "C002", "company_name": "AccuPro Advisors",
+        "company_website": "https://www.accuproadvisors.com/", "title": "Tax & Accounting Client Manager", "body_selector": "main",
+        "filter_keywords": true, "max_discovered": 1, "job_scope": "all"
+      }
+    },
+    {
+      "id": "carvana", "name": "Carvana · Phoenix-area careers", "kind": "greenhouse", "enabled": true,
+      "interval_hours": 3, "index_url": "https://boards-api.greenhouse.io/v1/boards/carvana/jobs",
+      "config": {
+        "company_name": "Carvana", "job_scope": "all", "max_checked": 500
+      }
+    },
+    {
+      "id": "axon", "name": "Axon · Phoenix-area careers", "kind": "greenhouse", "enabled": true,
+      "interval_hours": 3, "index_url": "https://boards-api.greenhouse.io/v1/boards/axon/jobs",
+      "config": {
+        "company_name": "Axon", "job_scope": "all", "max_checked": 500
+      }
+    },
+    {
+      "id": "onemedical", "name": "One Medical · Phoenix-area careers", "kind": "greenhouse", "enabled": true,
+      "interval_hours": 3, "index_url": "https://boards-api.greenhouse.io/v1/boards/onemedical/jobs",
+      "config": {
+        "company_name": "One Medical", "job_scope": "all", "max_checked": 500
+      }
+    }
+  ]
+}

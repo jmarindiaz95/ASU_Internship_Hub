@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open ASU Internship Hub</title>
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f5f3ef;color:#29232a;font:17px/1.6 system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px}main{max-width:640px;background:white;border:1px solid #e6ddd9;border-radius:18px;padding:40px;box-shadow:0 12px 45px #30202a0d}.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:750;color:#801d39}h1{font-size:32px;line-height:1.2;color:#65152a}p{color:#605861}a{color:#65152a}.open{display:inline-block;background:#65152a;color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:650}code{display:block;padding:12px;background:#f5f3ef;border-radius:7px;font-size:14px;overflow-wrap:anywhere}small{display:block;margin-top:24px;color:#706570}
+  </style>
+  <script src="./static/js/open-hub.js" defer></script>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">ASU INTERNSHIP HUB</p>
+    <h1>Open the jobs hub</h1>
+    <p id="connection-status" role="status">Checking whether your local hub is running…</p>
+    <p><a id="open-hub" class="open" href="http://127.0.0.1:8080/">Open jobs and map ↗</a></p>
+    <p>The app uses your local database and runs at <a href="http://127.0.0.1:8080/">127.0.0.1:8080</a>.</p>
+    <p>To start, double-click <strong>Start Hub.command</strong> or run:</p>
+    <code>.venv/bin/python server.py</code>
+    <noscript><p>Use the button above to open the hub.</p></noscript>
+    <small>Layout: hub/templates/index.html · Interaction: static/js/app.js · Styles: static/css/style.css</small>
+  </main>
+</body>
+</html>
